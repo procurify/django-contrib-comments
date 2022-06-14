@@ -6,7 +6,6 @@ from django.contrib.contenttypes.models import ContentType
 from django.contrib.sites.models import Site
 from django.db import models
 from django.utils import timezone
-from django.utils.encoding import python_2_unicode_compatible
 from django.utils.translation import ugettext_lazy as _
 try:
     from django.urls import reverse
@@ -48,7 +47,6 @@ class BaseCommentAbstractModel(models.Model):
         )
 
 
-@python_2_unicode_compatible
 class CommentAbstractModel(BaseCommentAbstractModel):
     """
     A user comment about some object.
