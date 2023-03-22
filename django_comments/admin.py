@@ -5,7 +5,6 @@ from django.contrib.auth import get_user_model
 from django.utils.translation import ugettext_lazy as _, ungettext
 
 from django_comments import get_model
-from django_comments.views.moderation import perform_flag, perform_approve, perform_delete
 
 
 class UsernameSearch(object):
@@ -54,23 +53,6 @@ class CommentsAdmin(admin.ModelAdmin):
                 actions.pop('remove_comments')
         return actions
 
-    def flag_comments(self, request, queryset):
-        self._bulk_flag(request, queryset, perform_flag,
-                        lambda n: ungettext('flagged', 'flagged', n))
-
-    flag_comments.short_description = _("Flag selected comments")
-
-    def approve_comments(self, request, queryset):
-        self._bulk_flag(request, queryset, perform_approve,
-                        lambda n: ungettext('approved', 'approved', n))
-
-    approve_comments.short_description = _("Approve selected comments")
-
-    def remove_comments(self, request, queryset):
-        self._bulk_flag(request, queryset, perform_delete,
-                        lambda n: ungettext('removed', 'removed', n))
-
-    remove_comments.short_description = _("Remove selected comments")
 
     def _bulk_flag(self, request, queryset, action, done_message):
         """
