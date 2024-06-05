@@ -2,7 +2,7 @@ from __future__ import unicode_literals
 
 from django.contrib import admin
 from django.contrib.auth import get_user_model
-from django.utils.translation import ugettext_lazy as _, ungettext
+from django.utils.translation import gettext_lazy as _, ngettext
 
 from django_comments import get_model
 
@@ -64,7 +64,7 @@ class CommentsAdmin(admin.ModelAdmin):
             action(request, comment)
             n_comments += 1
 
-        msg = ungettext('%(count)s comment was successfully %(action)s.',
+        msg = ngettext('%(count)s comment was successfully %(action)s.',
                         '%(count)s comments were successfully %(action)s.',
                         n_comments)
         self.message_user(request, msg % {'count': n_comments, 'action': done_message(n_comments)})
