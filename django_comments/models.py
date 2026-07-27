@@ -11,8 +11,8 @@ from .abstracts import (
 class Comment(CommentAbstractModel):
     class Meta(CommentAbstractModel.Meta):
         db_table = "django_comments"
-        index_together = [
-            ('content_type', 'object_pk')
+        indexes = [
+            models.Index(fields=['content_type', 'object_pk']),
         ]
 
 
